@@ -150,12 +150,64 @@ for ( i < 3) {
   i++;
 }
 
+-
+
 let number = prompt("Введите число больше 100.")
 while (number <= 100) {
     number = prompt("Введите число больше 100.")
 }
- 
+
 */
+
+let n = prompt('Введите число:');
+labelName:
+for (i = 2; i <= n; i++) {
+    for (j = 2; j < i; j++) {
+        if (i % j == 0) continue labelName;
+    }
+    console.log(i);
+}
+
+let n = prompt('Введите число:');
+for (i = 2; i <= n; i++) {
+    let j = 2;
+    while ( j <= i ) {
+        if ( i % j == 0 && i != 2 ) {
+            break;
+        } else {
+            console.log(i);
+        }
+        j++;
+    }
+}
+
+
+// ----------------------------------------------
+
+let browser;
+if (browser == 'Edge') {
+    alert( "You've got the Edge!" );
+} else if (browser == 'Chrome' || browser == 'Firefox' || browser == 'Safari' || browser == 'Opera' ) {
+    alert( 'Okay we support these browsers too' );
+} else {
+    alert( 'We hope that this page looks ok!' );
+}
+
+-
+
+let number = +prompt('Введите число между 0 и 3', '');
+switch (number) {
+    case 0:
+        alert('Вы ввели число 0');
+        break;
+    case 1:
+        alert('Вы ввели число 1');
+        break;
+    case 2:
+    case 3:
+        alert('Вы ввели число 2, а может и 3');
+        break;
+}
 
 
 // ----------------------------------------------
@@ -163,4 +215,47 @@ while (number <= 100) {
 
 /*
 
+сработает в обоих случаях, т.к. если age > 18, то сработает первый return и функция дальше не пойдет.
+
 */
+
+function checkAge(age) {
+    return (age > 18) ? true : confirm('Родители разрешили?');
+}
+
+function checkAge(age) {
+    return (age > 18) || confirm('Родители разрешили?');
+}
+
+-
+
+function min(a, b) {
+    if (a >= b) {
+        return b;
+    } else {
+        return a;
+    }
+}
+
+-
+
+function pow(x, n) {
+    let a = 1;
+    let b = x;
+    while (a < n) {
+        x = b * x;
+        a++;
+    }
+    return x;
+}
+
+
+// ----------------------------------------------
+
+
+function ask(question, yes, no) {
+    if (confirm(question)) yes()
+    else no();
+}
+  
+ask("Вы согласны?", () => alert("Вы согласились."), () => alert("Вы отменили выполнение.") );
