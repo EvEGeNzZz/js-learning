@@ -257,5 +257,59 @@ function ask(question, yes, no) {
     if (confirm(question)) yes()
     else no();
 }
-  
+
 ask("Вы согласны?", () => alert("Вы согласились."), () => alert("Вы отменили выполнение.") );
+
+
+// ----------------------------------------------
+
+
+let user = {}
+user.name = "Jhon"
+user.name = "Smith"
+user.name = "Pete"
+delete user.name;
+
+-
+
+function isEmpty(obj) {
+    for ( let key in obj ) {
+        return false;
+    }
+    return true;
+}
+
+-
+
+// Объект заданый через const можно менять, т.к. от изменения защищена только сама переменная, а не содержимое объекта.
+
+- 
+
+let salaries = {z
+    John: 100,
+    Ann: 160,
+    Pete: 130
+}
+let sum = 0;
+for ( let key in salaries ) {
+    sum += salaries[key];
+}
+alert(sum);
+
+-
+
+let menu = {
+    width: 200,
+    height: 300,
+    title: "My menu"
+};
+function multiplyNumeric(obj) {
+    for ( let key in obj ) {
+        if ( typeof obj[key] === "number" ) {
+            obj[key] *= 2;
+        }
+    }
+}
+multiplyNumeric(menu);
+console.log(menu.height);
+console.log(menu.width);
