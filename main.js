@@ -193,7 +193,7 @@ if (browser == 'Edge') {
     alert( 'We hope that this page looks ok!' );
 }
 
--
+//-
 
 let number = +prompt('Введите число между 0 и 3', '');
 switch (number) {
@@ -227,7 +227,7 @@ function checkAge(age) {
     return (age > 18) || confirm('Родители разрешили?');
 }
 
--
+//-
 
 function min(a, b) {
     if (a >= b) {
@@ -237,7 +237,7 @@ function min(a, b) {
     }
 }
 
--
+//-
 
 function pow(x, n) {
     let a = 1;
@@ -262,54 +262,3 @@ ask("Вы согласны?", () => alert("Вы согласились."), () =>
 
 
 // ----------------------------------------------
-
-
-let user = {}
-user.name = "Jhon"
-user.name = "Smith"
-user.name = "Pete"
-delete user.name;
-
--
-
-function isEmpty(obj) {
-    for ( let key in obj ) {
-        return false;
-    }
-    return true;
-}
-
--
-
-// Объект заданый через const можно менять, т.к. от изменения защищена только сама переменная, а не содержимое объекта.
-
-- 
-
-let salaries = {z
-    John: 100,
-    Ann: 160,
-    Pete: 130
-}
-let sum = 0;
-for ( let key in salaries ) {
-    sum += salaries[key];
-}
-alert(sum);
-
--
-
-let menu = {
-    width: 200,
-    height: 300,
-    title: "My menu"
-};
-function multiplyNumeric(obj) {
-    for ( let key in obj ) {
-        if ( typeof obj[key] === "number" ) {
-            obj[key] *= 2;
-        }
-    }
-}
-multiplyNumeric(menu);
-console.log(menu.height);
-console.log(menu.width);
