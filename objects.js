@@ -103,3 +103,52 @@ ladder.up().up().down().up().down().showStep();
 // ------------------------------------------
 
 
+let object = {};
+function A() { return object; }
+function B() { return object; }
+
+let a = new A;
+let b = new B;
+
+alert( a == b );
+
+//-
+
+function Calculator() {
+    
+    this.read = function() {
+        this.a = prompt('Введите чило a:');
+        this.b = prompt('Введите чило b:');
+    };
+    
+    this.sum = function() {
+        return this.a + this.b;
+    };
+    
+    this.mul = function() {
+        return this.a * this.b;
+    };
+}
+
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Сумма:" + calculator.sum() );
+alert( "Произведение:" + calculator.mul() );
+
+//-
+
+function Accumulator(startingValue) {
+    this.value = startingValue;
+  
+    this.read = function() {
+        this.value += prompt('Сколько нужно добавить?');
+    };
+}
+  
+let accumulator = new Accumulator(1); // начальное значение 1
+
+accumulator.read(); // прибавит ввод prompt к текущему значению
+accumulator.read(); // прибавит ввод prompt к текущему значению
+
+alert(accumulator.value); // выведет сумму этих значений
