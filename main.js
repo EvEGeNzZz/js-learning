@@ -112,7 +112,7 @@ if (login === "Admin" ) {
     let password = prompt('Пароль?');
     if (password === "Я главный" ) {
         alert('Здравствуйте!');
-    } else if (login === null) {
+    } else if (password === null) {
         alert('Отменено');
     } else {
         alert('Неверный пароль');
