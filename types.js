@@ -169,3 +169,157 @@ let sorted = copySorted(arr);
   
 alert( sorted );
 alert( arr );
+
+//-
+
+
+
+//-
+
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+
+let users = [ vasya, petya, masha ];
+
+let names = users.map(item => item.name);
+
+alert( names );
+
+//-
+
+let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
+let petya = { name: "Петя", surname: "Иванов", id: 2 };
+let masha = { name: "Маша", surname: "Петрова", id: 3 };
+
+let users = [ vasya, petya, masha ];
+
+let usersMapped = users.map(user => ({
+    fullName: `${user.name} ${user.surname}`,
+    id: user.id
+}));
+
+/*
+usersMapped = [
+  { fullName: "Вася Пупкин", id: 1 },
+  { fullName: "Петя Иванов", id: 2 },
+  { fullName: "Маша Петрова", id: 3 }
+]
+*/
+
+alert( usersMapped[0].id ) // 1
+alert( usersMapped[0].fullName ) // Вася Пупкин
+
+//-
+
+function sortByAge(arr) {
+    arr.sort((a, b) => a.age > b.age ? 1 : -1);
+}
+  
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+  
+let arr = [ vasya, petya, masha ];
+  
+sortByAge(arr);
+  
+// теперь отсортировано: [vasya, masha, petya]
+alert(arr[0].name); // Вася
+alert(arr[1].name); // Маша
+alert(arr[2].name); // Петя
+
+//-
+
+
+
+//-
+
+function getAverageAge(users) {
+    return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+}
+  
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 29 };
+  
+let arr = [ vasya, petya, masha ];
+  
+alert( getAverageAge(arr) ); // 28
+
+//-
+
+function unique(arr) {
+    let result = [];
+  
+    for (let str of arr) {
+        if (!result.includes(str)) {
+            result.push(str);
+        }
+    }
+  
+    return result;
+}
+  
+let strings = ["кришна", "кришна", "харе", "харе", "харе", "харе", "кришна", "кришна", ":-O"];
+  
+alert( unique(strings) ); // кришна, харе, :-O
+
+
+//-----------------------------------------------------------------------------
+
+
+function sumSalaries(salaries) {
+
+    let sum = 0;
+    for (let salary of Object.values(salaries)) {
+        sum += salary;
+    }
+  
+    return sum; // 650
+}
+  
+let salaries = {
+    "John": 100,
+    "Pete": 300,
+    "Mary": 250
+};
+  
+alert( sumSalaries(salaries) ); // 650
+
+//-
+
+function count(obj) {
+    return Object.keys(obj).length;
+}
+
+
+//-----------------------------------------------------------------------------
+
+
+let user = {
+    name: "John",
+    years: 30
+};
+  
+let {name, years: age, isAdmin = false} = user;
+  
+alert( name ); // John
+alert( age ); // 30
+alert( isAdmin ); // false
+
+//-
+
+function topSalary(salaries) {
+
+    let top = 0;
+    let topName = null;
+  
+    for(const [name, salary] of Object.entries(salaries)) {
+        if (top < salary) {
+            top = salary;
+            topName = name;
+        }
+    }
+    return topName;
+}
