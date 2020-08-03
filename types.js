@@ -345,3 +345,57 @@ alert( getWeekDay(date) );
 
 //-
 
+function getLocalDay(date) {
+    let day = date.getDay();
+    if (day == 0) {
+        day = 7;
+    }
+    return day;
+}
+
+//-
+
+function getDateAgo(date, days) {
+    let newDate = new Date(date);
+  
+    newDate.setDate(date.getDate() - days);
+    return newDate.getDate();
+}
+  
+let date = new Date(2015, 0, 2);
+  
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+
+//-
+
+function getLastDayOfMonth(year, month) {
+    let date = new Date(year, month + 1, 0);
+    return date.getDate();
+}
+
+//-
+
+function getSecondsToday() {
+    let date = new Date();
+    let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  
+    let result = date - today;
+    return Math.round(result / 1000);
+}
+
+//-
+
+function getSecondsToTomorrow(year, month) {
+    let date = new Date();
+    let tomorrow = new Date(date.getFullYear(), date.getMonth(), date.getDate()+1);
+
+    let result = tomorrow - date;
+    return Math.round(result / 1000);
+}
+
+//-
+
+//?
+
