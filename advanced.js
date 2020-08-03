@@ -153,3 +153,44 @@ function sum(a) {
 
 //-
 
+
+
+//- 
+
+let users = [
+    { name: "John", age: 20, surname: "Johnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Hathaway" }
+];
+  
+function byField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+}
+
+//-
+
+function makeArmy() {
+    let shooters = [];
+    let i = 0;
+    while (i < 10) {
+        let j = i;
+        let shooter = function() {
+            alert( j );
+        };
+        shooters.push(shooter);
+        i++;
+    }
+  
+    return shooters;
+}
+  
+let army = makeArmy();
+
+
+//-----------------------------------------------------------------------------
+
+
+
+//-
+
+// setTimeout срабатывает только полсе выполнения всего кода, поэтому alert выведет 100000000
