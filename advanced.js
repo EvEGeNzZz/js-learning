@@ -153,7 +153,17 @@ function sum(a) {
 
 //-
 
+function inBetween(a, b) {
+    return function(x) {
+        return x >= a && x <= b;
+    };
+}
 
+function inArray(arr) {
+    return function(x) {
+        return arr.includes(x);
+    };
+}
 
 //- 
 
@@ -185,6 +195,35 @@ function makeArmy() {
 }
   
 let army = makeArmy();
+
+/ посмотреть второе решение
+
+//-----------------------------------------------------------------------------
+
+
+function makeCounter() {
+    let count = 0;
+    function counter() {
+        return count++;
+    }
+    counter.set = value => count = value;
+    counter.decrease = () => count--;
+    return counter;
+}
+
+//- 
+
+function sum(a) {
+    let Summary = a;
+    function i(b) {
+        Summary += b;
+        return i;
+    }
+    i.toString = function() {
+        return Summary;
+    };
+    return i;
+}
 
 
 //-----------------------------------------------------------------------------
