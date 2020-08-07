@@ -181,22 +181,17 @@ function byField(field) {
 
 function makeArmy() {
     let shooters = [];
-    let i = 0;
-    while (i < 10) {
-        let j = i;
+    for (let i =0; i < 10; i++) { 
         let shooter = function() {
-            alert( j );
+            alert( i );
         };
         shooters.push(shooter);
-        i++;
     }
   
     return shooters;
 }
   
 let army = makeArmy();
-
-/ посмотреть второе решение
 
 //-----------------------------------------------------------------------------
 
@@ -225,10 +220,47 @@ function sum(a) {
     return i;
 }
 
+function sum(a) {
+    let Summary = a;
+    function i(b) {
+        if (b === undefined) {
+            return Summary;
+        } else {
+            Summary += b;
+            return i;
+        }
+    }
+    i.toString = function() {
+        return Summary;
+    };
+    return i;
+}
 
 //-----------------------------------------------------------------------------
 
+function printNumbers(from, to) {
+    let start = from;
+  
+    let interval = setInterval(function() {
+        alert(start);
+        if (start == to) {
+            clearInterval(interval);
+        }
+        start++;
+    }, 1000);
+}
 
+function printNumbers(from, to) {
+    let start = from;
+  
+    setTimeout(function go() {
+        alert(start);
+        if (start < to) {
+            setTimeout(go, 1000);
+        }
+        start++;
+    }, 1000);
+}
 
 //-
 
