@@ -265,3 +265,118 @@ function printNumbers(from, to) {
 //-
 
 // setTimeout срабатывает только полсе выполнения всего кода, поэтому alert выведет 100000000
+
+
+//-----------------------------------------------------------------------------
+
+
+function spy(func) {
+    function wrapper(...args) {
+        wrapper.calls.push(args);
+        return func.apply(this, arguments);
+    }  
+    wrapper.calls = [];
+    return wrapper;
+}
+
+//-
+
+function delay(f, ms) {
+    return function(...args) {
+        let savedThis = this; // сохраняем this в промежуточную переменную
+        setTimeout(function() {
+            f.apply(savedThis, args); // используем её
+        }, ms);
+    };
+}
+
+//-
+
+function debounce(f, ms) {
+    let isCooldown = false;
+    return function() {
+        if (isCooldown) return;
+        f.apply(this, arguments);
+        isCooldown = true;
+        setTimeout(() => isCooldown = false, ms);
+    };
+}
+
+//-
+
+function throttle(func, ms) {
+    let isThrottled = false,
+        savedArgs,
+        savedThis;
+    function wrapper() {
+        if (isThrottled) { // (2)
+            savedArgs = arguments;
+            savedThis = this;
+            return;
+        }
+        func.apply(this, arguments); // (1)
+        isThrottled = true;
+        setTimeout(function() {
+            isThrottled = false; // (3)
+            if (savedArgs) {
+                wrapper.apply(savedThis, savedArgs);
+                savedArgs = savedThis = null;
+            }
+        }, ms);
+    }
+    return wrapper;
+}
+
+
+//-----------------------------------------------------------------------------
+
+
+// null, т.к. контекст уже фиксирован и его нельзя изменить
+
+//-
+
+// сработает только первый bind, результатом будет Вася
+
+//-
+
+// undefined, т.к. после bind получится другой объекто, у еоторого нет свойства test
+
+//-
+
+function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+}
+
+let user = {
+    name: 'Вася',
+    loginOk() {
+        alert(`${this.name} logged in`);
+    },
+    loginFail() {
+        alert(`${this.name} failed to log in`);
+    },
+};
+
+askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+
+//-
+
+function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+}
+let user = {
+    name: 'John',
+
+    login(result) {
+        alert( this.name + (result ? ' logged in' : ' failed to log in') );
+    }
+};
+
+askPassword(user.login.bind(user, true), user.login.bind(user, false));
+
+
+//-----------------------------------------------------------------------------
