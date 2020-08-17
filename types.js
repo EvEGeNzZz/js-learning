@@ -29,7 +29,7 @@ readNumber();
 
 //-
 
-// ???
+alert( Math.round(6.35 * 10) / 10);
 
 //-
 
@@ -93,7 +93,8 @@ styles.unshift('Рэп', 'Регги');
 
 //-
 
-// ? 
+// "a","b",function.  
+// функция arr[2] вызывается как метод объекта, получая в this объект из arr и выводя его
 
 //-
 
@@ -115,9 +116,15 @@ sumInput();
 
 //-
 
+function camelize(str) {
+    return str.split('-').map( (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1) ).join('');
+}
+
+//-
+
 function filterRange(arr, a, b) {
     return arr.filter(item => (a <= item && item <= b));
-}
+}    
   
 let arr = [5, 3, 8, 1];
   
@@ -126,10 +133,6 @@ let filtered = filterRange(arr, 1, 4);
 alert( filtered ); // 3,1 (совпадающие значения)
   
 alert( arr ); // 5,3,8,1 (без изменений)
-
-//-
-
-
 
 //-
 
@@ -172,7 +175,25 @@ alert( arr );
 
 //-
 
-
+function Calculator() {
+    this.methods = {
+        "-": (a, b) => a - b,
+        "+": (a, b) => a + b
+    };
+    this.calculate = function(str) {
+        let split = str.split(' '),
+            a = +split[0],
+            op = split[1],
+            b = +split[2]
+        if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+            return NaN;
+        }
+        return this.methods[op](a, b);
+    }
+    this.addMethod = function(name, func) {
+        this.methods[name] = func;
+    };
+}
 
 //-
 
@@ -231,7 +252,9 @@ alert(arr[2].name); // Петя
 
 //-
 
-
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
 
 //-
 
@@ -397,5 +420,31 @@ function getSecondsToTomorrow(year, month) {
 
 //-
 
-//?
+function formatDate(date) {
+    let dayOfMonth = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    let diffMs = new Date() - date;
+    let diffSec = Math.round(diffMs / 1000);
+    let diffMin = diffSec / 60;
+    let diffHour = diffMin / 60;
+  
+    year = year.toString().slice(-2);
+    month = month < 10 ? '0' + month : month;
+    dayOfMonth = dayOfMonth < 10 ? '0' + dayOfMonth : dayOfMonth;
+    hour = hour < 10 ? '0' + hour : hour;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+  
+    if (diffSec < 1) {
+        return 'прямо сейчас';
+    } else if (diffMin < 1) {
+        return `${diffSec} сек. назад`
+    } else if (diffHour < 1) {
+        return `${diffMin} мин. назад`
+    } else {
+        return `${dayOfMonth}.${month}.${year} ${hour}:${minutes}`
+    }
+}
 
